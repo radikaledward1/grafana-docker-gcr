@@ -1,11 +1,13 @@
 FROM grafana/grafana:latest
 
-# Copiar archivos de configuración
-COPY provisioning/datasources.yaml /etc/grafana/provisioning/datasources/
-COPY provisioning/dashboards.yaml /etc/grafana/provisioning/dashboards/
+# Copiar los archivos de configuración de Grafana
+COPY provisioning /etc/grafana/provisioning
 
-# Copiar dashboards (si tienes algún archivo JSON de dashboards preconfigurado)
-# COPY dashboards /var/lib/grafana/dashboards
+# Establecer la variable de entorno para el puerto
+ENV GF_SERVER_HTTP_PORT=8080
 
-# Exponer el puerto de Grafana
-EXPOSE 3000
+# Exponer el puerto 8080
+EXPOSE 8080
+
+# Ejecutar el comando de inicio de Grafana
+CMD ["grafana-server", "--homepath=/usr/share/grafana"]
