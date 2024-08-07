@@ -1,0 +1,9 @@
+apiVersion: 1
+
+datasources:
+  - name: Google Cloud Logging
+    type: stackdriver
+    access: proxy
+    jsonData:
+      authenticationType: gce
+      defaultProject: op-prj-dev
